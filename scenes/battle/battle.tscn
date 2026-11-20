@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://di1lrg3005f5g"]
+
+[ext_resource type="Script" uid="uid://cxxniyyxyk3x0" path="res://scripts/grid/hex_grid.gd" id="1_7gynk"]
+[ext_resource type="Script" path="res://scripts/battle/battle.gd" id="2_battle"]
+
+[node name="Battle" type="Node2D" unique_id=1058290417]
+script = ExtResource("2_battle")
+
+[node name="Units" type="Node2D" parent="." unique_id=745001405]
+
+[node name="BattleController" type="Node" parent="." unique_id=1211192428]
+
+[node name="HexGrid" type="Node2D" parent="." unique_id=1688235281]
+script = ExtResource("1_7gynk")
