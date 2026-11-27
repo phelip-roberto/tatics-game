@@ -1,20 +1,18 @@
 
 extends Node2D
+class_name HexGrid
 
 const GRID_WIDTH: int = 12
 const GRID_HEIGHT: int = 12
 const HEX_SIZE: float = 28.0
 const GRID_MARGIN: float = 24.0
 
-const UNIT_SCENE: PackedScene = preload(
-	"res://scenes/units/unit.tscn"
-)
-
 const CELL_COLOR := Color("#303b46")
 const CELL_BORDER_COLOR := Color("#8295a8")
 const REACHABLE_COLOR := Color("#426b68")
 
 var unit: TacticalUnit
+var units_layer: Node2D
 var unit_selected: bool = false
 
 
@@ -26,19 +24,15 @@ func _ready() -> void:
 	print("Posição da grade: ", position)
 	print("Escala da grade: ", scale)
 
-	create_unit()
-	print("Unidade criada: ", unit != null)
-
 	queue_redraw()
 
-func create_unit() -> void:
-	unit = UNIT_SCENE.instantiate() as TacticalUnit
-	add_child(unit)
+func configure_test_unit(test_unit: TacticalUnit, unit_layer: Node2D) -> void:
+	unit = test_unit
+	units_layer = unit_layer
 
-	unit.set_grid_cell(
-		Vector2i(2, 2),
-		cell_to_local(Vector2i(2, 2))
-	)
+
+func cell_to_units_local(cell: Vector2i) -> Vector2:
+	return units_layer.to_local(to_global(cell_to_local(cell)))
 
 
 func cell_to_local(cell: Vector2i) -> Vector2:
@@ -189,9 +183,11 @@ func _input(event: InputEvent) -> void:
 	):
 		return
 
-	var mouse_position := to_local(
-		get_global_mouse_position()
-	)
+	handle_click_at_global_position(get_global_mouse_position())
+
+
+func handle_click_at_global_position(global_mouse_position: Vector2) -> void:
+	var mouse_position: Vector2 = to_local(global_mouse_position)
 
 	# Clique na unidade: seleciona ou deseleciona.
 	var unit_center := cell_to_local(unit.grid_cell)
@@ -219,7 +215,7 @@ func _input(event: InputEvent) -> void:
 	if is_reachable(target_cell):
 		unit.set_grid_cell(
 			target_cell,
-			cell_to_local(target_cell)
+			cell_to_units_local(target_cell)
 		)
 
 		print("Unidade movimentada para: ", target_cell)
