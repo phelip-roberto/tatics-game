@@ -1,3 +1,14 @@
+# Regras atuais do projeto
+
+- Engine: Godot 4.x, usando recursos nativos e sem plugins externos.
+- Linguagem: GDScript; tipagem estática obrigatória em scripts novos e alterados.
+- Gênero e apresentação: RPG tático single-player 2D, perspectiva isométrica e grid hexagonal flat-top.
+- Core: mantenha a simulação pura em classes `RefCounted` ou `Resource` sob `res://src/core/`. Separe-a estritamente da apresentação em `Node2D`, `TileMapLayer` e `Sprite2D` sob `res://src/entities/` e `res://src/ui/`.
+- TileMap: use `TileMapLayer` configurado para hexágonos flat-top.
+- Pathfinding: use `AStar2D` ou grafo lógico com coordenadas axiais/cúbicas; nunca dependa de colisores físicos (`Physics2D`) para encontrar caminhos.
+- Convenções: arquivos e pastas em `snake_case`; nomes de nós e `class_name` em `PascalCase`.
+
+As regras específicas abaixo continuam valendo quando compatíveis com estas regras atuais. Em caso de conflito, as decisões mais recentes do usuário e esta seção prevalecem.
 # AGENTS.md
 
 ## Project overview
@@ -78,26 +89,26 @@ already exist:
 
 ``` text
 res://
-├── scenes/
-│   ├── battle/
-│   │   └── battle.tscn
-│   └── units/
-│       └── unit.tscn
-├── scripts/
-│   ├── battle/
-│   │   ├── battle.gd
-│   │   └── battle_controller.gd
-│   ├── grid/
-│   │   ├── hex_grid.gd
-│   │   └── pathfinder.gd
-│   └── units/
-│       └── unit.gd
-├── assets/
-│   ├── characters/
-│   ├── terrain/
-│   ├── effects/
-│   └── ui/
-└── docs/
+â”œâ”€â”€ scenes/
+â”‚   â”œâ”€â”€ battle/
+â”‚   â”‚   â””â”€â”€ battle.tscn
+â”‚   â””â”€â”€ units/
+â”‚       â””â”€â”€ unit.tscn
+â”œâ”€â”€ scripts/
+â”‚   â”œâ”€â”€ battle/
+â”‚   â”‚   â”œâ”€â”€ battle.gd
+â”‚   â”‚   â””â”€â”€ battle_controller.gd
+â”‚   â”œâ”€â”€ grid/
+â”‚   â”‚   â”œâ”€â”€ hex_grid.gd
+â”‚   â”‚   â””â”€â”€ pathfinder.gd
+â”‚   â””â”€â”€ units/
+â”‚       â””â”€â”€ unit.gd
+â”œâ”€â”€ assets/
+â”‚   â”œâ”€â”€ characters/
+â”‚   â”œâ”€â”€ terrain/
+â”‚   â”œâ”€â”€ effects/
+â”‚   â””â”€â”€ ui/
+â””â”€â”€ docs/
 ```
 
 Intended responsibilities:
