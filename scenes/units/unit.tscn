@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://f55mlh0hftcd"]
 
-[ext_resource type="Script" uid="uid://fv1rqqsd8530" path="res://scripts/units/unit.gd" id="1_qgilm"]
+[ext_resource type="Script" uid="uid://fv1rqqsd8530" path="res://src/entities/tactical_unit.gd" id="1_qgilm"]
 
 [node name="Unit" type="Node2D" unique_id=1281609655]
 script = ExtResource("1_qgilm")
