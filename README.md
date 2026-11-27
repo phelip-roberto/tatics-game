@@ -6,6 +6,16 @@ Protótipo de RPG tático single-player em Godot 4, desenvolvido em GDScript par
 
 - Godot 4.7 ou compatível com a versão indicada em `project.godot`.
 
+## Testes
+
+Os testes de logica usam GDScript e o modo headless do Godot, sem framework ou dependencias externas. Execute na raiz do projeto:
+
+```powershell
+godot --headless --path . --script res://tests/test_runner.gd
+```
+
+O processo termina com codigo `0` quando todos os casos passam e `1` quando algum caso falha. `project.godot` declara compatibilidade com Godot 4.7; use essa versao para executar o projeto e os testes.
+
 ## Executar
 
 1. Abra o Godot Project Manager.

@@ -1,3 +1,18 @@
-# Godot 4+ specific ignores
+# Godot cache and generated files
 .godot/
-/android/
+.android/
+.export/
+
+# Local exports and build output
+/export/
+/exports/
+/build/
+/dist/
+*.pck
+
+# Local secrets
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
